@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Project Quiz</title>
+  </head>
+<body>
+    <div id="Quiz" class="Quiz1">
+    <h1>Who doesn't like project management?</h1>
+    
+    <p id="intro">
+    Let's test your knowledge about project management!</p>
+    <!-- Our Quiz is set up as part of the webpage here between the "div" tags -->
+    
+    <p id="QuestionQuiz" class="Qn">
+    <!-- Our Questions will go here --> Question X: QUESTION DESCRIPTION TO GO HERE</p>
+    <!-- Our Answers will go here --> 
+    
+    <button id="Answer1" class="Ans" onclick="Answer1Select()"> AnswerChoice1 </button> 
+    <button id="Answer2" class="Ans" onclick="Answer2Select()"> AnswerChoice2 </button> 
+    <button id="Answer3" class="Ans" onclick="Answer3Select()"> AnswerChoice3 </button>
+    <p>
+    
+    <button id="Next" class="NextQ" onclick="NextQu()">Next Question </button>
+    <button id="Finish" class="FinishQ" onclick="FinishQu()">Finish Quiz</button></p>
+    
+    <p id="Solution" class="Sn">
+    <!--Our solution (correct answer) will go here! --> The correct answer was TO BE INSERTED
+    </p>
+    
+    <p id="CurrentQuScore" class="Current">
+    <!-- The score for the current question will go here --> 
+    Your score for this question is X
+    </p>
+    
+    <p id="Rolling Score" class="RS">
+    Your total score for this quiz is X 
+    <!-- The cumulative score - total score for all questions answered so far - will go here -->
+    </p>
+    
+    </div>
+
+    <script type="text/javascript" src="quiz.js"></script>
+</body>
+</html>

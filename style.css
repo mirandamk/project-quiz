@@ -1,0 +1,72 @@
+h1{
+    color: #11174A
+    }
+
+div.Quiz1 {
+    background-color: #C8DCDD;
+    text-align: center;
+    }
+
+button.Ans {
+    background-color: #2A1FBF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    }
+
+button.NextQ {
+    background-color: Red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    }
+
+button.FinishQ {
+    background-color: Red;
+    border: none;
+    color: white;
+    display: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    }
+
+p.Qn {
+    font-size: 24px;
+    color: #262E9B;
+    }      
+    
+p.RS {
+    display: none;
+    font-size: 20px;
+    color: #180746;
+    font-weight: : 900;
+    }
+
+p.Sn {
+    font-size: 20px;
+    color: #180746;
+    }
+
+p.Current {
+    font-size: 18px;
+    color: #074616;
+    }
