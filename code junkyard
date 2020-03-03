@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <div id="Quiz" class="Quiz1">
+    <h1>Our Exciting World Cup Quiz!</h1>
+    
+    <p id="intro">
+    Ever wanted to prove you know all there is to know about the world cup? Now is your chance! Please have a go at our quiz below and let us know how you get on!</p>
+    <!-- Our Quiz is set up as part of the webpage here between the "div" tags -->
+    
+    <p id="QuestionQuiz" class="Qn">
+    <!-- Our Questions will go here --> Question X: QUESTION DESCRIPTION TO GO HERE</p>
+    <!-- Our Answers will go here --> 
+    
+    <button id="Answer1" class="Ans" onclick="Answer1Select()"> AnswerChoice1 </button> 
+    <button id="Answer2" class="Ans" onclick="Answer2Select()"> AnswerChoice2 </button> 
+    <button id="Answer3" class="Ans" onclick="Answer3Select()"> AnswerChoice3 </button>
+    <p>
+    
+    <button id="Next" class="NextQ" onclick="NextQu()">Next Question </button>
+    <button id="Finish" class="FinishQ" onclick="FinishQu()">Finish Quiz</button></p>
+    
+    <p id="Solution" class="Sn">
+    <!--Our solution (correct answer) will go here! --> The correct answer was TO BE INSERTED
+    </p>
+    
+    <p id="CurrentQuScore" class="Current">
+    <!-- The score for the current question will go here --> 
+    Your score for this question is X
+    </p>
+    
+    <p id="Rolling Score" class="RS">
+    Your total score for this quiz is X 
+    <!-- The cumulative score - total score for all questions answered so far - will go here -->
+    </p>
+    
+    </div>
+    <script src="./quiz.js"></script>
+    </body>
+    </html>
+    
+    
+    
+    
+    var i = 0;
+    // we will use "i" to be our question number - the starting number is always 0.
+    
+    
+    // we then use a FUNCTION, NextQu to update the questions, answers, etc.
+    function NextQu() {
+    i++;
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("QuestionQuiz").innerHTML = "Question "+(i+1)+": "+Questions[i];
+      document.getElementById("Answer1").style.display = "inline";
+        document.getElementById("Answer2").style.display = "inline";
+          document.getElementById("Answer3").style.display = "inline";
+          document.getElementById("Solution").style.display = "none";
+          document.getElementById("CurrentQuScore").style.display = "none";
+          //we bring back any answers hidden after the previous answer and make the buttons show the next answer choices
+    document.getElementById("Answer1").innerHTML=Answers[i][0];
+    document.getElementById("Answer2").innerHTML=Answers[i][1];
+    document.getElementById("Answer3").innerHTML=Answers[i][2];
+    //We also enable all answer buttons again:
+      document.getElementById("Answer1").disabled = false;
+        document.getElementById("Answer2").disabled = false;
+          document.getElementById("Answer3").disabled = false;
+    //We update the solution of the next question (note this will be hidden until the user has selected an answer)
+    document.getElementById("Solution").innerHTML=Solutions[i];
+    //we also hide the next question button again
+    document.getElementById("Next").style.display = "none";
+    }
+    
+    
+    //we need to leave the visitors with a nice message once they've finished the quiz and tell them their score - we hide the other content:
+    function FinishQu() {
+      //show the final score:
+      document.getElementById("Rolling Score").style.display="inline";
+      //remove the questions and answers:
+      document.getElementById("QuestionQuiz").style.display="none";
+      document.getElementById("Answer1").style.display="none";
+      document.getElementById("Answer2").style.display="none";
+      document.getElementById("Answer3").style.display="none";
+      document.getElementById("Solution").style.display="none";
+      document.getElementById("CurrentQuScore").style.display="none";
+      document.getElementById("Finish").style.display="none";
+      }
+    
+    var j;
+    //j is used to show which answer we selected, so we can pick the correct score
+    
+    var ScoreTotal=[];
+    
+    
+    
+    //We need to ensure when we select an answer, it does three things: 1. Highlight our selection 2. Grey out/delete the other answers but show "next question" 3. Show the score for that // QUESTION:
+    function Answer1Select() {
+      if(i<Questions.length-1){
+      j=0;
+      document.getElementById("Next").style.display = "inline";
+      document.getElementById("Solution").style.display = "block";
+      document.getElementById("CurrentQuScore").style.display = "block";
+      document.getElementById("Answer1").disabled = true;
+      //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+      document.getElementById("Answer2").style.display = "none";
+      document.getElementById("Answer3").style.display = "none";
+      document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+      ScoreTotal.push(Score[i][j]);
+      document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+          }
+          else{
+    //we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+      document.getElementById("Finish").style.display = "inline";
+      document.getElementById("Solution").style.display = "block";
+      document.getElementById("CurrentQuScore").style.display = "block";
+            document.getElementById("Answer1").disabled = true;
+            //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+            document.getElementById("Answer2").style.display = "none";
+            document.getElementById("Answer3").style.display = "none";
+            document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+            ScoreTotal.push(Score[i][j]);
+            document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+          }
+        }
+
+        
+      function Answer2Select() {
+        j=1;
+        if(i<Questions.length-1){
+        document.getElementById("Next").style.display = "inline";
+        document.getElementById("Solution").style.display = "block";
+        document.getElementById("CurrentQuScore").style.display = "block";
+          document.getElementById("Answer2").disabled = true;
+        document.getElementById("Answer1").style.display = "none";
+        document.getElementById("Answer3").style.display = "none";
+        document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+        ScoreTotal.push(Score[i][j]);
+        document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+      }
+      else{
+    //we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+    document.getElementById("Finish").style.display = "inline";
+    document.getElementById("Solution").style.display = "block";
+    document.getElementById("CurrentQuScore").style.display = "block";
+        document.getElementById("Answer1").disabled = true;
+        //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+        document.getElementById("Answer1").style.display = "none";
+        document.getElementById("Answer3").style.display = "none";
+        document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+        ScoreTotal.push(Score[i][j]);
+        document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+    
+    
+      }
+        }
+        function Answer3Select() {
+          j=2;
+          if(i<Questions.length-1){
+          document.getElementById("Next").style.display = "inline";
+          document.getElementById("Solution").style.display = "block";
+          document.getElementById("CurrentQuScore").style.display = "block";
+          document.getElementById("Answer3").disabled = true;
+          document.getElementById("Answer1").style.display = "none";
+          document.getElementById("Answer2").style.display = "none";
+          document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+          ScoreTotal.push(Score[i][j]);
+          document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+        }
+        else{
+      //we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+      document.getElementById("Finish").style.display = "inline";
+      document.getElementById("Solution").style.display = "block";
+      document.getElementById("CurrentQuScore").style.display = "block";
+          document.getElementById("Answer1").disabled = true;
+          //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+          document.getElementById("Answer1").style.display = "none";
+          document.getElementById("Answer2").style.display = "none";
+          document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+          ScoreTotal.push(Score[i][j]);
+          document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 10";
+    
+    
+        }
+          }
+    //with this function, we set the answer selectors to 0,1 or 2, which means the score will be set to the relevant item in the score array for question i, Score[i][j]
+    
+    
+    
+    //Questions are set up in an "array", the square brackets with Q1, Q2 being the questions which we can amend each time.
+    var Q1 = "Who won the 1990 world cup?";
+    var Q2 = "Who scored the first goal in the 1986 World Cup Final?";
+    var Q3 = "Who is the all time top goal scorer in World Cups?";
+    var Q4 = "When was Pele's first world cup?";
+    var Q5 = "Who did Argentina beat when Maradona did his famous 'hand of god' goal in 1986?";
+    var Q6 = "Who missed a penalty for France in the dramatic 1986 shoot out against Brazil?";
+    var Q7 = "What was the name of the German goalkeeper who assaulted Battiston in the 1982 world cup but was not booked?";
+    var Q8 = "Who was sent off for Brazil in their 4 July match against USA in World Cup 1994?";
+    var Q9 = "Which team did Belgium play twice in the 2018 world cup - neither game affecting their overall chances to win the world cup?";
+    var Q10 = "Which world cup minnows team did Dimbi Tubilandu keep goal for, albeit briefly and without much success?";
+    var Questions = [Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10];
+    //In a very similar way, we will include our answers
+    
+    
+    var A1 = ["Brazil", "West Germany", "Italy"];
+    var A2 = ["Jose Luis Brown", "Maradona", "Brehme"];
+    var A3 = ["Fontaine", "Klose", "Beckham"];
+    var A4 = ["1958", "1954", "1962"];
+    var A5 = ["Italy", "West Germany", "England"];
+    var A6 = ["Tigana", "Fernandez", "Platini"];
+    var A7 = ["Schumacher", "Illgner", "Maier"];
+    var A8 = ["Leonardo", "Romario", "Bebeto"];
+    var A9 = ["Brazil", "England", "Denmark"];
+    var A10 = ["Honduras", "Zaire", "El Salvador"];
+    var Answers = [A1,A2,A3,A4,A5,A6,A7,A8,A9,A10];
+    //...and solutions
+    
+    var S1 = "It was West Germany - they beat Argentina 1-0 in the final";
+    var S2 = "Jose Luis Brown scored a header to make it 1-0 in the final - the final score was 3-2 to Argentina.";
+    var S3 = "Miroslav Klose has the world cup record for goals scored with 16 goals in total";
+    var S4 = "Pele's first world cup (aged 17) was in 1958 - which Brazil won!";
+    var S5 = "England saw the hand of god as well as one of the best individual goals of all time to lose 2-1 to Argentina";
+    var S6 = "Platini missed the 4th French penalty on his 31st Birthday - France went on to win the shootout 4-3";
+    var S7 = "Schumacher was the guilty party and seemingly had little remorse for his actions";
+    var S8 = "Leonardo elbowed a US player on the half-way line to get a straight red in USA 94";
+    var S9 = "England played Belgium once in the group when they were both already through and again in the 3rd/4th place play-off.";
+    var S10= "Poor Dimbi Tubilandu was Zaire's goalkeeper subbed on after 21 minutes when they were 3-0 down - sadly, the goals kept coming and Yugoslavia won 9-0.";
+    var Solutions = [S1,S2,S3,S4,S5,S6,S7,S8,S9,S10];
+    //...and points scored for each answer - we will keep it to 1s and 0s but you can be creative!
+    
+    var SC1 = [0,1,0];
+    var SC2 = [1,0,0];
+    var SC3 = [0,1,0];
+    var SC4 = [1,0,0];
+    var SC5 = [0,0,1];
+    var SC6 = [0,0,1];
+    var SC7 = [1,0,0];
+    var SC8 = [1,0,0];
+    var SC9 = [0,1,0];
+    var SC10 = [0,1,0];
+    var Score = [SC1,SC2,SC3,SC4,SC5,SC6,SC7,SC8,SC9,SC10];
+    
+    //We will set our first questions, answers etc. up to appear when the page loads
+    document.getElementById("QuestionQuiz").innerHTML = "Question 1:"+Questions[i];
+    document.getElementById("Answer1").innerHTML=Answers[i][0];
+    document.getElementById("Answer2").innerHTML=Answers[i][1];
+    document.getElementById("Answer3").innerHTML=Answers[i][2];
+    document.getElementById("Solution").innerHTML=Solutions[i];
+    
+    
+    function getSum(a, b) {
+        return a + b;
+    }
+    
+      
+
+
+
+
+
+color: #11174A
+}
+  div.Quiz1 {
+    background-color: #C8DCDD;
+    text-align: center;
+  }
+    button.Ans {
+    background-color: #2A1FBF;
+   border: none;
+   color: white;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   border-radius: 25px;
+  }
+  button.NextQ {
+    background-color: Red;
+   border: none;
+   color: white;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: none;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   border-radius: 25px;
+  }
+  button.FinishQ {
+    background-color: Red;
+   border: none;
+   color: white;
+   display: none;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   border-radius: 25px;
+  }
+  p.Qn {
+    font-size: 24px;
+color: #262E9B;
+  }
+  p.RS {
+    display: none;
+    font-size: 20px;
+    color: #180746;
+    font-weight: : 900;
+  }
+  p.Sn {
+    font-size: 20px;
+    color: #180746;
+  }
+  p.Current {
+    font-size: 18px;
+    color: #074616;
+  }
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <div class="grid">
+        <div id="quiz">
+            <h1>Miranda's favorite things</h1>
+            <hr style="margin-bottom: 20px">
+ 
+            <p id="question"></p>
+
+            <p id="answer"></p>
+ 
+            <div class="buttons">
+                <button id="btn0"><span id="choice0"></span></button>
+                <button id="btn1"><span id="choice1"></span></button>
+                <button id="btn2"><span id="choice2"></span></button>
+                <button id="btn3"><span id="choice3"></span></button>
+            </div>
+ 
+            <hr style="margin-top: 50px">
+            <footer>
+                <p id="progress">Question x of y</p>
+            </footer>
+        </div>
+    </div>
+ 
+ 
+<script src="./quiz.js"></script>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+/////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+// function Quiz(questions) {
+//     this.score = 0;
+//     this.questions = questions;
+//     this.questionIndex = 0;
+// }
+ 
+// Quiz.prototype.getQuestionIndex = function() {
+//     return this.questions[this.questionIndex];
+// }
+ 
+// Quiz.prototype.guess = function(answer) {
+//     if(this.choices().isCorrectAnswer(answer)) {
+//         this.score++;
+//     }
+//     this.questionIndex++;
+// }
+ 
+// Quiz.prototype.isEnded = function() {
+//     return this.questionIndex === this.questions.length;
+// }
+ 
+ 
+// function Question(text, choices, answer) {
+//     this.text = text;
+//     this.choices = choices;
+//     this.answer = answer;
+// }
+ 
+// Question.prototype.isCorrectAnswer = function(choice) {
+//     return this.answer === choice;
+// }
+ 
+ 
+// function populate() {
+//     if(quiz.isEnded()) {
+//         showScores();
+//     }
+//     else {
+//         // show question
+//         var element = document.getElementById("question");
+//         element.innerHTML = quiz.getQuestionIndex().text;
+ 
+//         // show options
+//         var choices = quiz.getQuestionIndex().choices;
+//         for(var i = 0; i < choices.length; i++) {
+//             var element = document.getElementById("choice" + i);
+//             element.innerHTML = choices[i];
+//             guess("btn" + i, choices[i]);
+//         }
+ 
+//         showProgress();
+//     }
+// };
+ 
+// function guess(id, guess) {
+//     var button = document.getElementById(id);
+//     button.onclick = function() {
+//         // showAnswer();
+//         quiz.guess(guess);
+//         populate();
+//     }
+// };
+ 
+ 
+// function showProgress() {
+//     var currentQuestionNumber = quiz.questionIndex + 1;
+//     var element = document.getElementById("progress");
+//     element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
+// };
+ 
+// function showScores() {
+//     var gameOverHTML = "<h1>Result</h1>";
+//     gameOverHTML += "<h2 id='score'> Your scores: " + quiz.score + "</h2>";
+//     var element = document.getElementById("quiz");
+//     element.innerHTML = gameOverHTML;
+// };
+ 
+// let questions = [{
+//     question: "What's the capital of Lebanon?",
+//     choices: ["Paris", "London", "Cairo", "Beirout"],
+//     answer: "Beirout",
+// } , {
+//     question: "Who is the queen of the Netherlands?",
+//     choices: ["Beatrix", "Truus", "Maxima", "Willem-Lex"],
+//     answer: "Maxima",
+// } , {
+//     question: "What was the first cloned animal?",
+//     choices: ["sheep", "cat", "mouse", "dragon"],
+//     answer: "sheep"
+// } , {
+//     question: "What is the biggest mammal of the world?",
+//     choices: ["elephant", "whale", "rhino", "dragon"],
+//     answer: "whale"
+// } , {
+//     question: "Which country has the biggest population?",
+//     choices: ["China", "USA", "India", "Brazil"],
+//     answer: "China"
+// } 
+// ]
+
+
+// // create quiz
+// var quiz = new Quiz(questions);
+ 
+// // display quiz
+// populate();
+
+
+
+
+
+
+
+// create questions here
+
+// let questions = [{
+//     question: "What's the capital of Lebanon?",
+//     options: ["Paris", "London", "Cairo", "Beirout"],
+//     answer: "Beirout",
+// },
+
+// ]
+
+
+
+
+// var questions = [
+//     new Question("Favorite country?", ["Netherlands", "France","NZ", "Peru"], "NZ"),
+//     new Question("Favorite food?", ["sushi", "pizza", "curry", "patatje oorlog"], "sushi"),
+//     new Question("Favorite show?", ["GOT", "Friends","The office", "SATC"], "The office"),
+//     new Question("Favorite color?", ["red", "blue", "yellow", "green"], "blue"),
+//     new Question("What I want at the moment", ["sleep", "eat", "drink", "dance"], "sleep")
+// ];
+ 
+
+
+
+
+
+
+
+
+
+// function showAnswer(){
+//     debugger
+//     if (this.getQuestionIndex() != isCorrectAnswer(answer)) {
+//         console.log("fault")
+//         // var notCorrect = document.createElement("p");
+//         // var textnode = document.createTextNode("that was not the right answer")
+//         // notCorrect.appendChild(textnode);
+//         // document.getElementById("quiz").appendChild(notCorrect);
+//     } else { 
+//         console.log("correct")
+//         // var correct = document.createElement("p");
+//         // var textnode = document.createTextNode("great job")
+//         // correct.appendChild(textnode);
+//         // document.getElementById("quiz").appendChild(correct);
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// let quizState = {
+//     currentScore: 0,
+//     currentQuestion: 0,
+// }
+
+
+
+
+// function checkAnswer(){
+//     // increment score or not
+//     // render next question
+// }
+
+// renderConfidenceLevel(){
+
+// }
+
+
+
+
+
+
+
+// // select all elements
+
+// const start = document.getElementById("start");
+
+// const quiz = document.getElementById("quiz");
+
+// const question = document.getElementById("question");
+
+// const qImg = document.getElementById("qImg");
+
+// const choiceA = document.getElementById("A");
+
+// const choiceB = document.getElementById("B");
+
+// const choiceC = document.getElementById("C");
+
+// const counter = document.getElementById("counter");
+
+// const timeGauge = document.getElementById("timeGauge");
+
+// const progress = document.getElementById("progress");
+
+// const scoreDiv = document.getElementById("scoreContainer");
+
+
+// // create our questions
+
+// let questions = [
+
+//     {
+
+//         question : "What does HTML stand for?",
+
+//         imgSrc : "img/html.png",
+
+//         choiceA : "Correct",
+
+//         choiceB : "Wrong",
+
+//         choiceC : "Wrong",
+
+//         correct : "A"
+
+//     },{
+
+//         question : "What does CSS stand for?",
+
+//         imgSrc : "img/css.png",
+
+//         choiceA : "Wrong",
+
+//         choiceB : "Correct",
+
+//         choiceC : "Wrong",
+
+//         correct : "B"
+
+//     },{
+
+//         question : "What does JS stand for?",
+
+//         imgSrc : "img/js.png",
+
+//         choiceA : "Wrong",
+
+//         choiceB : "Wrong",
+
+//         choiceC : "Correct",
+
+//         correct : "C"
+
+//     }
+
+// ];
+
+
+
+
+
+// const lastQuestion = questions.length - 1;
+
+// let runningQuestion = 0;
+
+
+
+
+// // render a question
+
+// function renderQuestion(){
+
+//     let q = questions[runningQuestion];
+
+   
+
+//     question.innerHTML = "<p>"+ q.question +"</p>";
+
+//     qImg.innerHTML = "<img src="+ q.imgSrc +">";
+
+//     choiceA.innerHTML = q.choiceA;
+
+//     choiceB.innerHTML = q.choiceB;
+
+//     choiceC.innerHTML = q.choiceC;
+
+// }
+
+
+
+    
+//     function renderProgress(){
+
+//         for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
+    
+//             progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+    
+//         }
+    
+//     }
+    
+
+
+
+
+//     start.addEventListener("click",startQuiz);
+
+
+
+
+///////////////////////////////////
+
+
+
+
+
+body {
+    background-color: #413D3D;
+}
+ 
+.grid {
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 10px 50px 50px 50px;
+    border: 2px solid #cbcbcb;
+    
+}
+ 
+.grid h1 {
+    font-family: "sans-serif";
+    background-color: #01BBFF;
+    font-size: 60px;
+    text-align: center;
+    color: #ffffff;
+    padding: 2px 0px;
+    
+}
+ 
+#score {
+    color: #01BBFF;
+    text-align: center;
+    font-size: 30px;
+}
+ 
+.grid #question {
+    font-family: "monospace";
+    font-size: 30px;
+    color: #01BBFF;
+}
+ 
+.buttons {
+    margin-top: 30px;
+}
+ 
+#btn0, #btn1, #btn2, #btn3 {
+    background-color: #01BBFF;
+    width: 250px;
+    font-size: 20px;
+    color: #fff;
+    border: 1px solid #1D3C6A;
+    margin: 10px 40px 10px 0px;
+    padding: 10px 10px;
+}
+ 
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
+    cursor: pointer;
+    background-color: #01BBFF;
+}
+ 
+#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
+    outline: 0;
+}
+ 
+#progress {
+    color: #2b2b2b;
+    font-size: 18px;
+}
+
+
+////////////////////////////////
+
+
+
+function showAnswer(){
+    var answer = document.createElement("answer");
+    $answer.innerHTML =`${Question.answer}`;
+    var addAnswer = document.querySelector("quiz");
+    $addAnswer.appenChild($answer);
+    }
+
+
+        // showAnswer();
+
+
+
+
+
+var i = 0;
+// we will use "i" to be our question number - the starting number is always 0.
+
+
+// we then use a FUNCTION, NextQu to update the questions, answers, etc.
+function NextQu() {
+i++;
+document.getElementById("intro").style.display = "none";
+document.getElementById("QuestionQuiz").innerHTML = "Question "+(i+1)+": "+Questions[i];
+  document.getElementById("Answer1").style.display = "inline";
+    document.getElementById("Answer2").style.display = "inline";
+      document.getElementById("Answer3").style.display = "inline";
+      document.getElementById("Solution").style.display = "none";
+      document.getElementById("CurrentQuScore").style.display = "none";
+
+      //we bring back any answers hidden after the previous answer and make the buttons show the next answer choices
+document.getElementById("Answer1").innerHTML=Answers[i][0];
+document.getElementById("Answer2").innerHTML=Answers[i][1];
+document.getElementById("Answer3").innerHTML=Answers[i][2];
+
+//We also enable all answer buttons again:
+  document.getElementById("Answer1").disabled = false;
+    document.getElementById("Answer2").disabled = false;
+      document.getElementById("Answer3").disabled = false;
+
+//We update the solution of the next question (note this will be hidden until the user has selected an answer)
+document.getElementById("Solution").innerHTML=Solutions[i];
+//we also hide the next question button again
+document.getElementById("Next").style.display = "none";
+}
+
+// function renderQuestion(question){
+//     // clear out previous question
+//     // create a container div for the whole question
+//         // create h1 for question
+//         // create a container div for the options
+//         // loop over options and create a radio input and append it to the container
+
+//     // append the container div for the whole question to the dom
+// }
+
+
+//we need to leave the visitors with a nice message once they've finished the quiz and tell them their score - we hide the other content:
+function FinishQu() {
+  //show the final score:
+  document.getElementById("Rolling Score").style.display="inline";
+  //remove the questions and answers:
+  document.getElementById("QuestionQuiz").style.display="none";
+  document.getElementById("Answer1").style.display="none";
+  document.getElementById("Answer2").style.display="none";
+  document.getElementById("Answer3").style.display="none";
+  document.getElementById("Solution").style.display="none";
+  document.getElementById("CurrentQuScore").style.display="none";
+  document.getElementById("Finish").style.display="none";
+  }
+
+var j;
+//j is used to show which answer we selected, so we can pick the correct score
+
+var ScoreTotal=[];
+
+//We need to ensure when we select an answer, it does three things: 1. Highlight our selection 2. Grey out/delete the other answers but show "next question" 3. Show the score for that // QUESTION:
+function Answer1Select() {
+  if(i<Questions.length-1){
+  j=0;
+  document.getElementById("Next").style.display = "inline";
+  document.getElementById("Solution").style.display = "block";
+  document.getElementById("CurrentQuScore").style.display = "block";
+  document.getElementById("Answer1").disabled = true;
+  //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+  document.getElementById("Answer2").style.display = "none";
+  document.getElementById("Answer3").style.display = "none";
+  document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+  ScoreTotal.push(Score[i][j]);
+  document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+      }
+      else{
+//we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+  document.getElementById("Finish").style.display = "inline";
+  document.getElementById("Solution").style.display = "block";
+  document.getElementById("CurrentQuScore").style.display = "block";
+        document.getElementById("Answer1").disabled = true;
+        //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+        document.getElementById("Answer2").style.display = "none";
+        document.getElementById("Answer3").style.display = "none";
+        document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+        ScoreTotal.push(Score[i][j]);
+        document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+      }
+    }
+
+  function Answer2Select() {
+    j=1;
+    if(i<Questions.length-1){
+    document.getElementById("Next").style.display = "inline";
+    document.getElementById("Solution").style.display = "block";
+    document.getElementById("CurrentQuScore").style.display = "block";
+      document.getElementById("Answer2").disabled = true;
+    document.getElementById("Answer1").style.display = "none";
+    document.getElementById("Answer3").style.display = "none";
+    document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+    ScoreTotal.push(Score[i][j]);
+    document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+  }
+  else{
+//we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+document.getElementById("Finish").style.display = "inline";
+document.getElementById("Solution").style.display = "block";
+document.getElementById("CurrentQuScore").style.display = "block";
+    document.getElementById("Answer1").disabled = true;
+    //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+    document.getElementById("Answer1").style.display = "none";
+    document.getElementById("Answer3").style.display = "none";
+    document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+    ScoreTotal.push(Score[i][j]);
+    document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+  }
+}
+
+    function Answer3Select() {
+      j=2;
+      if(i<Questions.length-1){
+      document.getElementById("Next").style.display = "inline";
+      document.getElementById("Solution").style.display = "block";
+      document.getElementById("CurrentQuScore").style.display = "block";
+      document.getElementById("Answer3").disabled = true;
+      document.getElementById("Answer1").style.display = "none";
+      document.getElementById("Answer2").style.display = "none";
+      document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+      ScoreTotal.push(Score[i][j]);
+      document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+    }
+    else{
+  //we don't bring "Next Question" back for the last answer, instead the Finish Quiz
+  document.getElementById("Finish").style.display = "inline";
+  document.getElementById("Solution").style.display = "block";
+  document.getElementById("CurrentQuScore").style.display = "block";
+      document.getElementById("Answer1").disabled = true;
+      //this stops the user being able to select the correct answer multiple time to top up their score. We must then remember to enable it in the "NextQu" function.
+      document.getElementById("Answer1").style.display = "none";
+      document.getElementById("Answer2").style.display = "none";
+      document.getElementById("CurrentQuScore").innerHTML="You scored "+Score[i][j]+" on this question";
+      ScoreTotal.push(Score[i][j]);
+      document.getElementById("Rolling Score").innerHTML="Hey! Thanks a lot for taking our quiz - your final score is..."+ScoreTotal.reduce(getSum)+" out of 5";
+    }
+}
+
+//with this function, we set the answer selectors to 0,1 or 2, which means the score will be set to the relevant item in the score array for question i, Score[i][j]
+
+//Questions are set up in an "array", the square brackets with Q1, Q2 being the questions which we can amend each time.
+var Q1 = "What other category is there beside routine activities and project based activities?";
+var Q2 = "Who decides if a project result has been delivered?";
+var Q3 = "What is a 'milestone' in a project?";
+var Q4 = "What is an advantage of project-based work?";
+var Q5 = "Which statement is true in regards to the project goal and the project result?";
+
+var Questions = [Q1,Q2,Q3,Q4,Q5];
+
+//In a very similar way, we will include our answers
+var A1 = ["Improvised activities", "Process activities", "Planned activities"];
+var A2 = ["Final user", "Project leader", "Commission client"];
+var A3 = ["The moment the final product needs to be delivered", "A meeting during which important decisions are made", "The moment a (sub)product is delivered"];
+var A4 = ["By having a clear plan of action, everybody that is involved knows what to do", "Working in project will have a learning effect on the entire organisation", "The project leader can take decisions independently"];
+var A5 = ["The project goal is a detailed description of the end product. The project result is a broad description of the project goal", "The project goal is SMART formulated. The project result is a description of what will be delivered", "The project goal has a broad focus. The project result is a precise description of the goal"];
+
+var Answers = [A1,A2,A3,A4,A5];
+
+//...and solutions
+var S1 = "Improvised activities";
+var S2 = "Commission client";
+var S3 = "The moment a (sub)product is delivered";
+var S4 = "By having a clear plan of action, everybody that is involved knows what to do";
+var S5 = "The project goal is SMART formulated. The project result is a description of what will be delivered";
+
+var Solutions = [S1,S2,S3,S4,S5];
+
+//...and points scored for each answer - we will keep it to 1s and 0s but you can be creative!
+var SC1 = [1,0,0];
+var SC2 = [0,0,1];
+var SC3 = [0,0,1];
+var SC4 = [1,0,0];
+var SC5 = [0,1,0];
+
+var Score = [SC1,SC2,SC3,SC4,SC5];
+
+//We will set our first questions, answers etc. up to appear when the page loads
+document.getElementById("QuestionQuiz").innerHTML = "Question 1:"+Questions[i];
+document.getElementById("Answer1").innerHTML=Answers[i][0];
+document.getElementById("Answer2").innerHTML=Answers[i][1];
+document.getElementById("Answer3").innerHTML=Answers[i][2];
+document.getElementById("Solution").innerHTML=Solutions[i];
+
+
+function getSum(a, b) {
+    return a + b;
+}
+
+
+// let quizState = {
+//     currentScore: 0,
+//     currentQuestion: 0,
+// }
+// let questions = [{
+//     question: "What's the capital of Lebanon?",
+//     options: ["Paris", "London", "Cairo", "Beirout"],
+//     answer: "Beirout",
+// },
+
+// ]
+
+// function checkAnswer(){
+//     // increment score or not
+//     // render next question
+// }
+
+// renderConfidenceLevel(){
+
+// }

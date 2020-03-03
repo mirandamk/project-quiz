@@ -1,72 +1,96 @@
-h1{
-    color: #11174A
-    }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-div.Quiz1 {
-    background-color: #C8DCDD;
-    text-align: center;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
 
-button.Ans {
-    background-color: #2A1FBF;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+body.correct {
+  background-color: green;
+}
 
-button.NextQ {
-    background-color: Red;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+body.wrong {
+  background-color:red;
+}
 
-button.FinishQ {
-    background-color: Red;
-    border: none;
-    color: white;
-    display: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+.container {
+  width: 800px;
+  max-width: 80%;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 10px 2px;
+}
 
-p.Qn {
-    font-size: 24px;
-    color: #262E9B;
-    }      
-    
-p.RS {
-    display: none;
-    font-size: 20px;
-    color: #180746;
-    font-weight: : 900;
-    }
+.btn-grid, .cfd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 20px 0;
+}
 
-p.Sn {
-    font-size: 20px;
-    color: #180746;
-    }
+.btn, .cfd {
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color: blue;
+  padding: 5px 10px;
+  color: white;
+  outline: none;
+}
 
-p.Current {
-    font-size: 18px;
-    color: #074616;
-    }
+.btn:hover {
+  border-color: black;
+}
+
+.btn.correct {
+  background-color: green;
+  color: black;
+}
+
+.btn.wrong {
+  background-color:red
+}
+
+.start-btn, .next-btn, .final-btn, .startagain-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.final-screen {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+#final-text, #results {
+  font-size: 1,5em;
+  padding: 20px;
+}
+
+#start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
