@@ -1,46 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Project Quiz</title>
-  </head>
-<body>
-    <div id="Quiz" class="Quiz1">
-    <h1>Who doesn't like project management?</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Quiz</title>
+</head>
+<body id = "body">
     
-    <p id="intro">
-    Let's test your knowledge about project management!</p>
-    <!-- Our Quiz is set up as part of the webpage here between the "div" tags -->
-    
-    <p id="QuestionQuiz" class="Qn">
-    <!-- Our Questions will go here --> Question X: QUESTION DESCRIPTION TO GO HERE</p>
-    <!-- Our Answers will go here --> 
-    
-    <button id="Answer1" class="Ans" onclick="Answer1Select()"> AnswerChoice1 </button> 
-    <button id="Answer2" class="Ans" onclick="Answer2Select()"> AnswerChoice2 </button> 
-    <button id="Answer3" class="Ans" onclick="Answer3Select()"> AnswerChoice3 </button>
-    <p>
-    
-    <button id="Next" class="NextQ" onclick="NextQu()">Next Question </button>
-    <button id="Finish" class="FinishQ" onclick="FinishQu()">Finish Quiz</button></p>
-    
-    <p id="Solution" class="Sn">
-    <!--Our solution (correct answer) will go here! --> The correct answer was TO BE INSERTED
-    </p>
-    
-    <p id="CurrentQuScore" class="Current">
-    <!-- The score for the current question will go here --> 
-    Your score for this question is X
-    </p>
-    
-    <p id="Rolling Score" class="RS">
-    Your total score for this quiz is X 
-    <!-- The cumulative score - total score for all questions answered so far - will go here -->
-    </p>
-    
+<div class="container">
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
     </div>
 
-    <script type="text/javascript" src="quiz.js"></script>
+    <div id="confidence-container" class="hide">
+        <div id="confidenceLevel">How confident are you about your answer?</div>
+        <div id="confidence-buttons" class="cfd-grid">
+          <button id="cfd1">Easy peasy, I got this</button>
+          <button id="cfd2">Pretty certain this is the right answer</button>
+          <button id="cfd3">Not sure about this question, but I mostly understand the topic / theory / model</button>
+          <button id="cfd4">I have absolutely no idea what you are talking about</button>
+        </div>
+      </div>
+
+    <div class="controls">
+      <button id="start-btn" class="start-btn btn">Start</button>
+
+    </div>
+    <div id="image-container">
+    </div>
+
+    <div id="result-container">
+      <div id="result-text"></div>
+      <button id="next-btn" class="next-btn btn hide">Next</button>
+      <button id="final-btn" class="final-btn btn hide">Final results</button> 
+    </div>
+
+    <div class="final-screen">
+        <div id="final-text"></div>
+        <button id="startagain-btn" class="startagain-btn btn hide">Start again</button>
+    </div>
+</div>
+<script src="./quiz.js"></script>
 </body>
 </html>
+        
+       
+        
+        
+        
+        
+        

@@ -1,72 +1,160 @@
-h1{
-    color: #11174A
-    }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-div.Quiz1 {
-    background-color: #C8DCDD;
-    text-align: center;
-    }
+body {
+  display:flex;
+  font-family: Arial, Helvetica, sans-serif;
+  --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://soundviewcreative.com/wp-content/uploads/2015/11/soundview-water-image-e1486474736450.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-button.Ans {
-    background-color: #2A1FBF;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+.correct {
+  background-color: green;
+  z-index: 100;
+}
 
-button.NextQ {
-    background-color: Red;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+body.wrong {
+  background-color:red;
+}
 
-button.FinishQ {
-    background-color: Red;
-    border: none;
-    color: white;
-    display: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    }
+.container {
+  width: 800px;
+  max-width: 90%;
+  max-height: 90%; 
+  background-color: white;
+  padding: 5px;
+  box-shadow: 0 0 10px 2px;
+  border-radius: 15px;
 
-p.Qn {
-    font-size: 24px;
-    color: #262E9B;
-    }      
-    
-p.RS {
-    display: none;
-    font-size: 20px;
-    color: #180746;
-    font-weight: : 900;
-    }
+}
 
-p.Sn {
-    font-size: 20px;
-    color: #180746;
-    }
+.btn-grid, .cfd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 10px;
+  margin: 0px 0px 20px 0px;
+  padding: 5px;
+}
 
-p.Current {
-    font-size: 18px;
-    color: #074616;
-    }
+.btn, #cfd1, #cfd2, #cfd3, #cfd4 {
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color: #3A8BBF;
+  padding: 5px;
+  color: white;
+  outline: none;
+  border-radius: 15px;
+  transition-duration: 0.4s;
+}
+
+.btn:hover {
+  border-color: black;
+  background-color: #91BEE4;
+  color: white;
+}
+
+#cfd1:hover {
+  border-color: black;
+  background-color: #91BEE4;
+  color: white;
+}
+
+#cfd2:hover {
+  border-color: black;
+  background-color: #91BEE4;
+  color: white;
+}
+
+#cfd3:hover {
+  border-color: black;
+  background-color: #91BEE4;
+  color: white;
+}
+
+#cfd4:hover {
+  border-color: black;
+  background-color: #91BEE4;
+  color: white;
+}
+
+
+.btn.correct {
+  background-color: green;
+  color: black;
+}
+
+.btn.wrong {
+  background-color:red
+}
+
+.start-btn, .next-btn, .final-btn, .startagain-btn {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 5px 20px;
+  margin: 5px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.final-screen {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+#final-text, #results {
+  font-size: 1em;
+  padding: 10px;
+}
+
+#start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#question, #confidenceLevel, #result-text{
+  font-size: 1em;
+  text-align: center;
+}
+
+#result-container { 
+  flex-direction: column;
+  display:flex;
+  align-items: center;
+  padding: 5px; 
+}
+
+#image-container  {
+  display:flex;
+  justify-content: center; 
+}
+
+#image-container img {
+border-radius: 15px;
+height: 40vh;
+width: auto;
+}
+
+
+
