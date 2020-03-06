@@ -123,7 +123,7 @@ conLevel1.addEventListener('click', () => {
     src.appendChild(img);
   } 
    else if (!outcomeAnswer) {
-    resultText.innerHTML = `Seriously? You think you know your stuff?`
+    resultText.innerHTML = `Wrong answer. Seriously? You think you know your stuff?`
     var img = document.createElement("img");
     img.src = "https://media.giphy.com/media/rfskmSvktqSoo/giphy.gif";
     var src = document.getElementById("image-container");
@@ -142,7 +142,7 @@ conLevel2.addEventListener('click', () => {
 
   } 
     else if (!outcomeAnswer) {
-    resultText.innerHTML = `Seriously, what a disappointment`
+    resultText.innerHTML = `Wrong answer? Seriously? Gosh, I'm speechless `
     var img = document.createElement("img");
     img.src = "https://media.giphy.com/media/RBeddeaQ5Xo0E/giphy.gif";
     var src = document.getElementById("image-container");
@@ -160,7 +160,7 @@ conLevel3.addEventListener('click', () => {
     src.appendChild(img);
      } 
     else if (!outcomeAnswer) {
-    resultText.innerHTML = `Wrong answer. I'm speechless`
+    resultText.innerHTML = `Wrong answer`
     var img = document.createElement("img");
     img.src = " https://media.giphy.com/media/BYeeRPPXcQS4M/giphy.gif";
     var src = document.getElementById("image-container");
@@ -248,30 +248,39 @@ function finalScreen(){
 
 const questions = [
   {
-    question: 'What is the biggest mammal of the world',
+    question: 'What would be an inappropriate way to call your wife?',
     answer: [
-      {text: 'tiger', correct: false},
-      {text: 'whale', correct: true},
-      {text: 'elephant', correct: false},
-      {text: 'rhino', correct: false},
+      {text: 'Poepie - poopie', correct: false},
+      {text: 'Scheetje - little fart', correct: false},
+      {text: 'Wijf - wive', correct: true},
+      {text: 'Schatje - little treasure', correct: false},
     ]
   } , 
   {
-    question: 'What is the biggest pussy of the world',
+    question: 'You got invited to a Dutch birthday party. You arrive a bit late and the room is full of family and friends. Who do you congratulate?',
     answer: [
-      {text: 'tiger', correct: true},
-      {text: 'whale', correct: false},
-      {text: 'elephant', correct: false},
-      {text: 'rhino', correct: false},
+      {text: 'Just the birthday boy / girl', correct: false},
+      {text: 'The birthday boy / girl and his / her parents', correct: false},
+      {text: 'Every single person that is in the room', correct: true},
+      {text: 'Every single person that is in the room, plus you are expected to call the parents if they are not present', correct: false},
     ]
   } , 
   {
-    question: 'What is the horniest animal of the world',
+    question: 'What is NOT an existing political party in the Netherlands',
     answer: [
-      {text: 'tiger', correct: false},
-      {text: 'whale', correct: false},
-      {text: 'elephant', correct: false},
-      {text: 'rhino', correct: true},
+      {text: 'Millenialpartij - Millenial Party', correct: true},
+      {text: 'Partij voor de Dieren - Animal Party', correct: false},
+      {text: '50Plus - 50 Plus', correct: false},
+      {text: 'Piratenpartij - Pirate Party', correct: false},
+    ]
+  } , 
+  {
+    question: 'A Dutch oven is a large cooking pot, but it also has a different meaning. What is the second meaning?',
+    answer: [
+      {text: 'Smoking weed in a very small room, without ventilating it', correct: false},
+      {text: 'When you fart in bed and pull the covers over someone else\'s head', correct: true},
+      {text: 'Smoking weed while covering your head with a bag', correct: false},
+      {text: 'Cooking smelly food, like brussel sprouts, in a small room without ventilating it properly', correct: false},
     ]
   }
 ];

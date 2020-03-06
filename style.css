@@ -54,7 +54,7 @@ body.wrong {
   outline: none;
   border-radius: 15px;
   transition-duration: 0.4s;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .btn:hover {
@@ -98,7 +98,7 @@ body.wrong {
 }
 
 .start-btn, .next-btn, .final-btn, .startagain-btn {
-  font-size: 1.em;
+  font-size: 1.5em;
   font-weight: bold;
   padding: 5px 20px;
   margin: 5px;
@@ -123,7 +123,7 @@ body.wrong {
 }
 
 #final-text, #results {
-  font-size: 1em;
+  font-size: 0.8em;
   padding: 10px;
 }
 
@@ -135,7 +135,7 @@ body.wrong {
 }
 
 #question, #confidenceLevel, #result-text{
-  font-size: 1em;
+  font-size: 0.8em;
   text-align: center;
   padding: 5px;
 }
