@@ -16,7 +16,7 @@ var conLevel3 = document.getElementById('cfd3')
 var conLevel4 = document.getElementById('cfd4')
 
 var resultContainer = document.getElementsByClassName('result-container')
-var resultContainerImg = document.getElementsByClassName('result-container img')
+var resultContainerImg = document.querySelectorAll('result-container img')
 var resultText = document.getElementById('result-text')
 var imageContainer = document.getElementById('image-container')
 var body = document.getElementById('body')
@@ -24,9 +24,7 @@ var body = document.getElementById('body')
 let numCorrect = 0;
 let shuffledQuestions, currentQuestionIndex
 let confidenceButtonClicked = false;
-
 let outcomeAnswer = undefined
-
 let confidenceButtons = document.querySelectorAll("#confidence-buttons button");
 
 for(let i = 0; i < confidenceButtons.length; i++) {
@@ -36,7 +34,6 @@ for(let i = 0; i < confidenceButtons.length; i++) {
 }
 
 startButton.addEventListener('click', startGame)
-
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++ 
   setNextQuestion()
@@ -47,7 +44,6 @@ startAgainButton.addEventListener('click', startGame)
 function startGame(){
   startButton.classList.add('hide')
   startAgainButton.classList.add('hide')
-
   shuffledQuestions = questions.sort(() => Math.random() -.5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
@@ -58,7 +54,6 @@ function startGame(){
 function setNextQuestion(){
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
-
 }
 
 function resetState() {
@@ -82,15 +77,12 @@ function resetState() {
 }
 
 function showQuestion(question){
-  
 questionElement.innerText = question.question
 question.answer.forEach(answer => {
   const button = document.createElement('button')
   button.innerText = answer.text
   button.classList.add('btn')
   answerButtonsElement.appendChild(button)
-
-  
 
   button.addEventListener('click', () => {
     if (answer.correct) {
@@ -100,7 +92,6 @@ question.answer.forEach(answer => {
     outcomeAnswer = answer.correct
   })
   })
-
 }
 
 function questionsLeft() {
@@ -111,13 +102,9 @@ function questionsLeft() {
   }
 }
 
-
-
-
 conLevel1.addEventListener('click', () => {
   questionsLeft()
   if (outcomeAnswer) {
-    document.getElementsByTagName("button")[0].setAttribute("class", "correct")
     resultText.innerHTML = `You got this! You got ${numCorrect} question out of the ${questions.length} questions correct`
     var img = document.createElement("img");
     img.src = "https://media.giphy.com/media/ZHn4xJj0hLZ0Q/giphy.gif";
@@ -141,7 +128,6 @@ conLevel2.addEventListener('click', () => {
     img.src = "https://media.giphy.com/media/rypyVNU547qrC/giphy.gif";
     var src = document.getElementById("image-container");
     src.appendChild(img);
-
   } 
     else if (!outcomeAnswer) {
     resultText.innerHTML = `Wrong answer? Seriously? Gosh, I'm speechless `
@@ -160,7 +146,7 @@ conLevel3.addEventListener('click', () => {
     img.src = "https://media.giphy.com/media/90F8aUepslB84/giphy.gif";
     var src = document.getElementById("image-container");
     src.appendChild(img);
-     } 
+    } 
     else if (!outcomeAnswer) {
     resultText.innerHTML = `Wrong answer`
     var img = document.createElement("img");
@@ -218,28 +204,29 @@ function finalScreen(){
     resultImg.src = "https://media.giphy.com/media/h8HmN0UcEKR0xWnv3R/giphy.gif";
     var resultImgContainer = document.getElementById("result-container");
     resultImgContainer.appendChild(resultImg);
-
-  } else if (numCorrect === 1){
+  } 
+  else if (numCorrect === 1){
     finalText.innerHTML = `1 out of the 4 questions correct`
     var resultImg = document.createElement("img");
     resultImg.src = "https://media.giphy.com/media/3o6ZtokgzQv6ThHzj2/giphy.gif";
     var resultImgContainer = document.getElementById("result-container");
     resultImgContainer.appendChild(resultImg);
-
-  } else if (numCorrect === 2){
+  } 
+    else if (numCorrect === 2){
     finalText.innerHTML = `2 out of the 4 questions correct`
     var resultImg = document.createElement("img");
     resultImg.src = "https://media.giphy.com/media/IsifDvdoFPUe4/giphy.gif";
     var resultImgContainer = document.getElementById("result-container");
     resultImgContainer.appendChild(resultImg);
-
-  } else if (numCorrect === 3){
+  } 
+    else if (numCorrect === 3){
     finalText.innerHTML = `3 out of the 4 questions correct`
     var resultImg = document.createElement("img");
     resultImg.src = "https://media.giphy.com/media/26xBENWdka2DSvvag/giphy.gif";
     var resultImgContainer = document.getElementById("result-container");
     resultImgContainer.appendChild(resultImg);
-  } else {
+  } 
+    else {
     finalText.innerHTML = `4 out of the 4 questions correct. Well done!`
     var resultImg = document.createElement("img");;
     resultImg.src = "https://media.giphy.com/media/2alKkyRFPKRSU/giphy.gif";

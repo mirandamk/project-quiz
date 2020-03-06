@@ -96,7 +96,7 @@ button.off {
 
 .correct {
   border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color: #33cc33;
+  background-color: #3A8BBF;
   padding: 5px;
   color: white;
   outline: none;
@@ -107,7 +107,7 @@ button.off {
 
 .wrong {
   border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color:red;
+  background-color:#3A8BBF;
   padding: 5px;
   color: white;
   outline: none;
@@ -168,6 +168,10 @@ button.off {
   font-size: 0.8em;
   text-align: center;
   padding: 5px;
+}
+
+#final-text {
+  font-size: 1.5em;
 }
 
 #result-container { 
