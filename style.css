@@ -17,7 +17,7 @@ body {
   background-size: cover;
 }
 
-.correct {
+body.correct {
   background-color: green;
   z-index: 100;
 }
@@ -34,7 +34,6 @@ body.wrong {
   padding: 5px;
   box-shadow: 0 0 10px 2px;
   border-radius: 15px;
-
 }
 
 .btn-grid, .cfd-grid {
@@ -62,6 +61,14 @@ body.wrong {
   color: white;
 }
 
+button.on { 
+  background: #91BEE4 
+}
+
+button.off { 
+  background: #3A8BBF;  
+}
+
 #cfd1:hover {
   border-color: black;
   background-color: #91BEE4;
@@ -87,9 +94,26 @@ body.wrong {
 }
 
 
-.btn.correct {
-  background-color: green;
-  color: black;
+.correct {
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color: #33cc33;
+  padding: 5px;
+  color: white;
+  outline: none;
+  border-radius: 15px;
+  transition-duration: 0.4s;
+  font-size: 0.8em;
+}
+
+.wrong {
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color:red;
+  padding: 5px;
+  color: white;
+  outline: none;
+  border-radius: 15px;
+  transition-duration: 0.4s;
+  font-size: 0.8em;
 }
 
 .btn.wrong {
@@ -168,6 +192,23 @@ width: auto;
   border-radius: 15px;
   height: 40vh;
   width: auto;
-}
+  margin: 20px;
 }
 
+
+body.correct {
+  --hue: var(--hue-correct);
+}
+
+body.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.btn.correct {
+  --hue: var(--hue-correct);
+  color: black;
+}
+
+.btn.wrong {
+  --hue: var(--hue-wrong);
+}

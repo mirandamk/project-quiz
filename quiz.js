@@ -1,5 +1,3 @@
-//test
-
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const finalButton = document.getElementById('final-btn')
@@ -11,13 +9,14 @@ const finalText = document.getElementById('final-text')
 const confidenceLevelContainerElement = document.getElementById ('confidence-container')
 const levelButtonsElement = document.getElementById('confidence-buttons')
 const confidenceElement = document.getElementById('confidenceLevel')
-//const resultButton = document.getElementById('result-btn')
+const answerButton = document.getElementsByClassName('btn')
 var conLevel1 = document.getElementById('cfd1')
 var conLevel2 = document.getElementById('cfd2')
 var conLevel3 = document.getElementById('cfd3')
 var conLevel4 = document.getElementById('cfd4')
-const answerButton = document.getElementsByClassName('btn')
+
 var resultContainer = document.getElementsByClassName('result-container')
+var resultContainerImg = document.getElementsByClassName('result-container img')
 var resultText = document.getElementById('result-text')
 var imageContainer = document.getElementById('image-container')
 var body = document.getElementById('body')
@@ -33,12 +32,11 @@ let confidenceButtons = document.querySelectorAll("#confidence-buttons button");
 for(let i = 0; i < confidenceButtons.length; i++) {
   confidenceButtons[i].addEventListener("click", function(){
     confidenceButtonClicked = true;
-    //resultButton.classList.remove('hide')
   })
 }
 
 startButton.addEventListener('click', startGame)
-//resultButton.addEventListener('click', seeResult)
+
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++ 
   setNextQuestion()
@@ -49,6 +47,7 @@ startAgainButton.addEventListener('click', startGame)
 function startGame(){
   startButton.classList.add('hide')
   startAgainButton.classList.add('hide')
+
   shuffledQuestions = questions.sort(() => Math.random() -.5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
@@ -59,7 +58,7 @@ function startGame(){
 function setNextQuestion(){
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
-  //resultsContainer.innerHTML = ''
+
 }
 
 function resetState() {
@@ -77,9 +76,13 @@ function resetState() {
   while (finalText.firstChild) {
     finalText.removeChild(finalText.firstChild)
   }
+  while (resultContainerImg.firstChild) {
+    resultContainerImg.removeChild(resultContainerImg.firstChild)
+  }
 }
 
 function showQuestion(question){
+  
 questionElement.innerText = question.question
 question.answer.forEach(answer => {
   const button = document.createElement('button')
@@ -87,7 +90,7 @@ question.answer.forEach(answer => {
   button.classList.add('btn')
   answerButtonsElement.appendChild(button)
 
-  //resultButton.classList.remove('hide')
+  
 
   button.addEventListener('click', () => {
     if (answer.correct) {
@@ -97,6 +100,7 @@ question.answer.forEach(answer => {
     outcomeAnswer = answer.correct
   })
   })
+
 }
 
 function questionsLeft() {
@@ -108,14 +112,12 @@ function questionsLeft() {
 }
 
 
-// var img = document.createElement("img");
-// img.src = "https://thelifevirtue.com/you-got-this-quotes-funny-memes-together/";
-// resultContainer.appendChild(img);
 
 
 conLevel1.addEventListener('click', () => {
   questionsLeft()
   if (outcomeAnswer) {
+    document.getElementsByTagName("button")[0].setAttribute("class", "correct")
     resultText.innerHTML = `You got this! You got ${numCorrect} question out of the ${questions.length} questions correct`
     var img = document.createElement("img");
     img.src = "https://media.giphy.com/media/ZHn4xJj0hLZ0Q/giphy.gif";
@@ -186,31 +188,6 @@ conLevel4.addEventListener('click', () => {
  }
  })
 
-// function selectAnswer(event){
-//  // resultButton.classList.add('hide')
-
-//   setStatusClass(document.body, correct)
-//   Array.from(answerButtonsElement.children).forEach(button => {
-//   setStatusClass(button, button.dataset.correct)
-//   })
-//   if(shuffledQuestions.length > currentQuestionIndex +1 ){
-//   nextButton.classList.remove('hide')
-//   } else {
-//   finalButton.classList.remove('hide')
-//   }
-// }
-
-
-function changeColorButtons(answerButton){
-  debugger
-  for (let i = 0; i<answerButton.length; i++) {
- if (outcomeAnswer == true){
-  answerButton.classList.add('correct')
-} else {
-  answerButton.classList.add('wrong')
-}
-}
-}
 
 function setStatusClass(element, outcomeAnswer){
   clearStatusClass(element)

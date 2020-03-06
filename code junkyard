@@ -1,3 +1,72 @@
+// function setStatusClass(button, outcomeAnswer){
+//  // clearStatusClass(element)
+//   if (outcomeAnswer) {
+//     button.classList.add('correct')
+//   } else {
+//     button.classList.add('wrong')
+//   }
+// }
+
+// function clearStatusClass(element){
+//   element.classList.remove('correct')
+//   element.classList.remove('wrong')
+// } 
+ 
+ 
+ //const resultButton = document.getElementById('result-btn')
+ 
+ //resultButton.classList.remove('hide')
+ 
+ //resultButton.addEventListener('click', seeResult)
+ 
+  //resultsContainer.innerHTML = ''
+
+// var img = document.createElement("img");
+// img.src = "https://thelifevirtue.com/you-got-this-quotes-funny-memes-together/";
+// resultContainer.appendChild(img);
+
+
+//resultButton.classList.remove('hide')
+
+
+//  <p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+
+
+// function changeColorButton() {
+//   document.getElementsByClassName("btn").style.color = "blue";
+//  }
+
+
+//  </script>
+
+// function selectAnswer(event){
+//  // resultButton.classList.add('hide')
+
+//   setStatusClass(document.body, correct)
+//   Array.from(answerButtonsElement.children).forEach(button => {
+//   setStatusClass(button, button.dataset.correct)
+//   })
+//   if(shuffledQuestions.length > currentQuestionIndex +1 ){
+//   nextButton.classList.remove('hide')
+//   } else {
+//   finalButton.classList.remove('hide')
+//   }
+// }
+
+
+// function changeColorButtons(answerButton){
+//   debugger
+//   for (let i = 0; i<answerButton.length; i++) {
+//  if (outcomeAnswer == true){
+//   answerButton.classList.add('correct')
+// } else {
+//   answerButton.classList.add('wrong')
+// }
+// }
+// }  
+  
+  
+  
   // const confidenceLevel = [
 //   {
 //     confidence: 'how confident are you in the right answer?',
