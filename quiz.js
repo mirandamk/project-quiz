@@ -136,7 +136,7 @@ conLevel2.addEventListener('click', () => {
    if (outcomeAnswer) {
     resultText.innerHTML = `You see, you know your stuff! You got ${numCorrect} question out of the ${questions.length} questions correct`
     var img = document.createElement("img");
-    img.src = "https://sayingimages.com/wp-content/uploads/dont-worry-you-got-this-meme.jpg";
+    img.src = "https://media.giphy.com/media/rypyVNU547qrC/giphy.gif";
     var src = document.getElementById("image-container");
     src.appendChild(img);
 
@@ -236,13 +236,38 @@ function finalScreen(){
   startAgainButton.classList.remove('hide')
   resultText.classList.add('hide')
   if (numCorrect === 0){
-    finalText.innerHTML = `You're a loser`
+    finalText.innerHTML = `0 out of the 4 questions correct`
+    var resultImg = document.createElement("img");
+    resultImg.src = "https://media.giphy.com/media/h8HmN0UcEKR0xWnv3R/giphy.gif";
+    var resultImgContainer = document.getElementById("result-container");
+    resultImgContainer.appendChild(resultImg);
+
   } else if (numCorrect === 1){
-    finalText.innerHTML = `You're sort of a loser`
+    finalText.innerHTML = `1 out of the 4 questions correct`
+    var resultImg = document.createElement("img");
+    resultImg.src = "https://media.giphy.com/media/3o6ZtokgzQv6ThHzj2/giphy.gif";
+    var resultImgContainer = document.getElementById("result-container");
+    resultImgContainer.appendChild(resultImg);
+
   } else if (numCorrect === 2){
-    finalText.innerHTML = `You're sort of okay`
+    finalText.innerHTML = `2 out of the 4 questions correct`
+    var resultImg = document.createElement("img");
+    resultImg.src = "https://media.giphy.com/media/IsifDvdoFPUe4/giphy.gif";
+    var resultImgContainer = document.getElementById("result-container");
+    resultImgContainer.appendChild(resultImg);
+
+  } else if (numCorrect === 3){
+    finalText.innerHTML = `3 out of the 4 questions correct`
+    var resultImg = document.createElement("img");
+    resultImg.src = "https://media.giphy.com/media/26xBENWdka2DSvvag/giphy.gif";
+    var resultImgContainer = document.getElementById("result-container");
+    resultImgContainer.appendChild(resultImg);
   } else {
-    finalText.innerHTML = `Well done`
+    finalText.innerHTML = `4 out of the 4 questions correct. Well done!`
+    var resultImg = document.createElement("img");;
+    resultImg.src = "https://media.giphy.com/media/2alKkyRFPKRSU/giphy.gif";
+    var resultImgContainer = document.getElementById("result-container");
+    resultImgContainer.appendChild(resultImg);
 }
 }
 
